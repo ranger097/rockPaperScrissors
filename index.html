@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=10">
+    <title>Rock Paper Scissors</title>
+    <style>
+        body {
+            padding: 0px;
+            margin: 0%;
+            background-color: rgb(19, 19, 19);
+        }
+        .header {
+            background-color: black;
+            width: 100vw; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: beige;
+        }
+        .summary {
+            margin-top: 12px;
+            margin-bottom: 12px;
+            background-color: rgba(0, 0, 0, 0);
+
+            display: flex;
+            flex-direction: column;
+            gap:12px;
+        }
+
+        .rules {
+            color: beige;
+            background-color: black;
+
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Rock Paper Scissors</h1>
+    </div>
+    
+    <div class="summary">
+
+        <div class="rules">
+            <p>1. Rock beats scissors</p>
+        </div>
+    
+        <div class="rules">
+            <p>2. Paper beats rock</p>
+        </div>
+    
+        <div class="rules">
+            <p>3. Scissors beats paper</p>
+        </div>
+
+    </div>
+
+    <script>
+
+       
+        
+       
+        function getPlayerChoice() {
+           
+            let choice = prompt("rock, paper, or scissors").toLowerCase();  
+
+            if(choice === "rock" || choice === "paper" || choice === "scissors") {
+                return choice;
+            }else {
+                alert("rock, paper, or scissors");
+                return getPlayerChoice();
+            }
+         
+        }
+
+        function getComputerChoice(rock,paper,scissors) {
+
+            let choice = Math.random(800) * 30;
+            let decision = Math.floor(choice) * 2;
+            let result;
+            if(decision <= 13) {
+            result = "rock";
+            } else if(decision >= 13 && decision <= 29) {
+            result = "paper";
+            }else{
+            result = "scissors";
+            }
+            return result;
+        }
+
+        function score(playerChoice, computerChoice) {
+
+            let result;
+
+            if(playerChoice === computerChoice) {
+              result = "its a tie";
+            } else if (playerChoice === "rock" && computerChoice === "scissors" ||
+                      playerChoice === "scissors" && computerChoice === "paper" || 
+                      playerChoice === "paper" && computerChoice === "rock") {
+                result = "player wins";
+            } else {
+                result = "computer wins";
+            }
+            return result;
+        }
+
+        const playerChoice = getPlayerChoice();
+       const computerChoice = getComputerChoice();
+        const result = score(playerChoice, computerChoice);
+        alert("playerChoice: " + playerChoice + "\nComputer choice: " + computerChoice + "\nResult: " + result);
+       
+    </script>
+   
+</body>
+</html>
